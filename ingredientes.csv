@@ -1,0 +1,14 @@
+codigo_ing,nombre_ing,costo_unitario,unidad_medida
+ING001,Pollo (presas),4.50,kg
+ING002,Mondongo (Panza de res),5.50,kg
+ING003,Pescado (Albacora),7.50,kg
+ING004,Arroz,1.20,kg
+ING005,Papa chola,0.90,kg
+ING006,Yuca,1.00,kg
+ING007,Tomate,1.50,kg
+ING008,Cebolla Paiteña,1.30,kg
+ING009,Pimiento verde,1.60,kg
+ING010,Chuleta de cerdo,5.00,kg
+ING011,Fréjol,2.10,kg
+ING012,Plátano maduro,0.80,kg
+ING013,Camarón,8.50,kg
