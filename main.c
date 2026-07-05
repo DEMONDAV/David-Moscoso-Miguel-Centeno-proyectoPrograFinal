@@ -29,8 +29,12 @@ int main() {
         } else if (op == 2) {
             printf("\n1. Registrar\n2. Listar\n3. Actualizar\n4. Eliminar\nSeleccione: ");
             scanf("%d", &sub_op);
+            if(sub_op == 1) registrar_plato(platos, &t_pla);
+            if(sub_op == 2) listar_platos(platos, t_pla); 
+            if(sub_op == 3) actualizar_plato(platos, t_pla);
+            if(sub_op == 4) eliminar_plato(platos, &t_pla, relaciones, &t_rel);
         } else if (op == 3) {
-            printf("\n1. Asociar ingrediente a plato\n2. Quitar relación\nSeleccione: ");
+            printf("\n1. Asociar ingrediente a plato\n2. Quitar relacion\nSeleccione: ");
             scanf("%d", &sub_op);
         } else if (op == 4) {
             printf("Proximamente: Calculos y Reportes.\n");
