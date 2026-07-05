@@ -9,9 +9,9 @@ int main() {
     Plato platos[MAX_PLATOS];
     PlatoIngrediente relaciones[MAX_RELACIONES];
 
-    int t_ing = 0;
-    int t_pla = 0;
-    int t_rel = 0;
+    int t_ing = cargar_ingredientes_csv("ingredientes.csv", ingredientes);
+    int t_pla = cargar_platos_csv("platos.csv", platos);
+    int t_rel = cargar_relaciones_csv("plato_ingredientes.csv", relaciones);
 
     int op = 0, sub_op = 0;
     do {
@@ -31,7 +31,10 @@ int main() {
         } else if (op == 4) {
             printf("Proximamente: Calculos y Reportes.\n");
         } else if (op == 5) {
-            printf("Proximamente: Sincronizacion de archivos.\n");
+            guardar_ingredientes_csv("ingredientes.csv", ingredientes, t_ing);
+            guardar_platos_csv("platos.csv", platos, t_pla);
+            guardar_relaciones_csv("plato_ingredientes.csv", relaciones, t_rel);
+            printf("Archivos .csv sincronizados de forma correcta.\n");
         }
     } while (op != 6);
 
