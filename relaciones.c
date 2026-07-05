@@ -36,3 +36,39 @@ void guardar_relaciones_csv(const char *filename, PlatoIngrediente lista[], int 
     }
     fclose(file);
 }
+
+void asociar_ingrediente_a_plato(PlatoIngrediente lista_rel[], int *total_rel, Plato lista_platos[], int total_platos, Ingrediente lista_ing[], int total_ing) {
+    if (*total_rel >= MAX_RELACIONES) return;
+    char cod_p[MAX_STR], cod_i[MAX_STR];
+    printf("Codigo del Plato: "); scanf("%s", cod_p);
+    printf("Codigo del Ingrediente: "); scanf("%s", cod_i);
+    
+    if (buscar_plato_por_codigo(lista_platos, total_platos, cod_p) == -1 || buscar_ingrediente_por_codigo(lista_ing, total_ing, cod_i) == -1) {
+        printf("Error: Verifique que ambos codigos existan.\n"); return;
+    }
+    
+    strcpy(lista_rel[*total_rel].codigo_plato, cod_p);
+    strcpy(lista_rel[*total_rel].codigo_ing, cod_i);
+    printf("Cantidad a usar (en kg o unidad base): ");
+    scanf("%f", &lista_rel[*total_rel].cantidad_usada);
+    (*total_rel)++;
+    printf("Relacion guardada de forma limpia.\n");
+}
+
+void quitar_ingrediente_de_plato(PlatoIngrediente lista_rel[], int *total_rel) {
+    char cod_p[MAX_STR], cod_i[MAX_STR];
+    printf("Codigo del Plato: "); scanf("%s", cod_p);
+    printf("Codigo del Ingrediente a retirar: "); scanf("%s", cod_i);
+    
+    for(int i = 0; i < *total_rel; i++) {
+        if(strcmp(lista_rel[i].codigo_plato, cod_p) == 0 && strcmp(lista_rel[i].codigo_ing, cod_i) == 0) {
+            for(int j = i; j < (*total_rel) - 1; j++) {
+                lista_rel[j] = lista_rel[j+1];
+            }
+            (*total_rel)--;
+            printf("Relacion removida con exito.\n");
+            return;
+        }
+    }
+    printf("No se encontro relacion.\n");
+}

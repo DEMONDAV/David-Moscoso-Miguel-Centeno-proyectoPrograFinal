@@ -36,6 +36,8 @@ int main() {
         } else if (op == 3) {
             printf("\n1. Asociar ingrediente a plato\n2. Quitar relacion\nSeleccione: ");
             scanf("%d", &sub_op);
+            if(sub_op == 1) asociar_ingrediente_a_plato(relaciones, &t_rel, platos, t_pla, ingredientes, t_ing);
+            if(sub_op == 2) quitar_ingrediente_de_plato(relaciones, &t_rel);
         } else if (op == 4) {
             printf("Proximamente: Calculos y Reportes.\n");
         } else if (op == 5) {
