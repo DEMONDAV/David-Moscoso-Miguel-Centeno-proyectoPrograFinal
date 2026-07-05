@@ -72,3 +72,33 @@ void quitar_ingrediente_de_plato(PlatoIngrediente lista_rel[], int *total_rel) {
     }
     printf("No se encontro relacion.\n");
 }
+
+void calcular_costos_menu(Plato lista_platos[], int total_platos, PlatoIngrediente lista_rel[], int total_rel, Ingrediente lista_ing[], int total_ing) {
+    for (int i = 0; i < total_platos; i++) {
+        lista_platos[i].costo_ingredientes = 0;
+    }
+    
+    for (int i = 0; i < total_rel; i++) {
+        int idx_p = buscar_plato_por_codigo(lista_platos, total_platos, lista_rel[i].codigo_plato);
+        int idx_i = buscar_ingrediente_por_codigo(lista_ing, total_ing, lista_rel[i].codigo_ing);
+        if (idx_p != -1 && idx_i != -1) {
+            lista_platos[idx_p].costo_ingredientes += (lista_ing[idx_i].costo_unitario * lista_rel[i].cantidad_usada);
+        }
+    }
+    
+    for (int i = 0; i < total_platos; i++) {
+        float cb = lista_platos[i].costo_ingredientes;
+        float imp = cb * (lista_platos[i].impuesto_porcentaje / 100.0f);
+        float ser = cb * (lista_platos[i].servicio_porcentaje / 100.0f);
+        float gan = cb * (lista_platos[i].ganancia_porcentaje / 100.0f);
+        lista_platos[i].costo_final = cb + imp + ser + gan;
+    }
+}
+
+void mostrar_reporte_financiero(Plato lista_platos[], int total_platos) {
+    printf("\n============== REPORTES Y MENU FINAL RESTAURANTE ==============\n");
+    for(int i = 0; i < total_platos; i++) {
+        printf("Plato: %-20s | Costo Base: $%6.2f | PRECIO VENTA: $%6.2f\n", 
+               lista_platos[i].nombre_plato, lista_platos[i].costo_ingredientes, lista_platos[i].costo_final);
+    }
+}

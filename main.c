@@ -30,7 +30,7 @@ int main() {
             printf("\n1. Registrar\n2. Listar\n3. Actualizar\n4. Eliminar\nSeleccione: ");
             scanf("%d", &sub_op);
             if(sub_op == 1) registrar_plato(platos, &t_pla);
-            if(sub_op == 2) listar_platos(platos, t_pla); 
+            if(sub_op == 2) { calcular_costos_menu(platos, t_pla, relaciones, t_rel, ingredientes, t_ing); listar_platos(platos, t_pla); }
             if(sub_op == 3) actualizar_plato(platos, t_pla);
             if(sub_op == 4) eliminar_plato(platos, &t_pla, relaciones, &t_rel);
         } else if (op == 3) {
@@ -39,7 +39,8 @@ int main() {
             if(sub_op == 1) asociar_ingrediente_a_plato(relaciones, &t_rel, platos, t_pla, ingredientes, t_ing);
             if(sub_op == 2) quitar_ingrediente_de_plato(relaciones, &t_rel);
         } else if (op == 4) {
-            printf("Proximamente: Calculos y Reportes.\n");
+            calcular_costos_menu(platos, t_pla, relaciones, t_rel, ingredientes, t_ing);
+            mostrar_reporte_financiero(platos, t_pla);
         } else if (op == 5) {
             guardar_ingredientes_csv("ingredientes.csv", ingredientes, t_ing);
             guardar_platos_csv("platos.csv", platos, t_pla);
